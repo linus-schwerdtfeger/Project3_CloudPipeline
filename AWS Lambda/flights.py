@@ -2,6 +2,7 @@ import requests
 import datetime
 import pandas   as pd
 import numpy    as np
+from traitlets import Undefined
 import config   as cfg
 
 def get_flights():
@@ -49,6 +50,7 @@ def get_flights():
         def getTime(list, json, f_js, arrORdep):
             from datetime import datetime
             [date,time_]=(f_js[list][arrORdep][json]['movement']['scheduledTimeLocal']).split()
+            #date = Undefined # date is of no use
             [time_,summerdelta]= time_.split('+')
             time_=datetime.strptime(time_,'%H:%M').time()
             return time_
